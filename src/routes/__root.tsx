@@ -14,8 +14,10 @@ import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { authQueryOptions, type AuthQueryResult } from "~/lib/auth/queries";
 import appCss from "~/styles.css?url";
 
+import Rybbit from "~/components/rybbit";
 import { ThemeProvider } from "~/components/theme-provider";
 import { Toaster } from "~/components/ui/sonner";
+import { env } from "~/env/client";
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
@@ -44,10 +46,37 @@ export const Route = createRootRouteWithContext<{
       },
       {
         name: "description",
-        content: "A minimal starter template for 🏝️ TanStack Start.",
+        content: "FILL",
+      },
+      {
+        property: "og:description",
+        content: "FILL",
+      },
+      {
+        property: "og:type",
+        content: "website",
+      },
+      {
+        name: "twitter:card",
+        content: "summary_large_image",
+      },
+      {
+        name: "twitter:title",
+        content: "FILL",
+      },
+      {
+        name: "twitter:description",
+        content: "FILL",
+      },
+      {
+        name: "robots",
+        content: "index, follow",
       },
     ],
-    links: [{ rel: "stylesheet", href: appCss }],
+    links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "canonical", href: env.VITE_BASE_URL },
+    ],
   }),
   component: RootComponent,
 });
@@ -71,6 +100,7 @@ function RootDocument({ children }: { readonly children: React.ReactNode }) {
         <ThemeProvider defaultTheme="light">
           {children}
           <Toaster richColors />
+          <Rybbit />
         </ThemeProvider>
 
         <TanStackDevtools

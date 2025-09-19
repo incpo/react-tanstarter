@@ -21,7 +21,7 @@ export default defineConfig({
       },
 
       // https://tanstack.com/start/latest/docs/framework/react/hosting#deployment
-      // target: "node-server",
+      target: "bun",
     }),
     viteReact({
       // https://react.dev/learn/react-compiler
