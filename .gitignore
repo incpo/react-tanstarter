@@ -1,10 +1,10 @@
 node_modules
 
 # Ignore lockfiles we don't use
-# package-lock.json
-# yarn.lock
-# pnpm-lock.yaml
-# bun.lock
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+bun.lockb
 
 .DS_Store
 .cache

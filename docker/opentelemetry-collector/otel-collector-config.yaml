@@ -1,0 +1,78 @@
+
+receivers:
+  otlp:
+    protocols:
+      grpc:
+      http:
+  hostmetrics:
+    collection_interval: 60s  # Frequency of metrics collection.
+    scrapers:
+      cpu: {}
+      load: {}
+      memory: {}
+      disk: {}
+      filesystem: {}
+      network: {}
+  docker_stats:
+    endpoint: unix:///var/run/docker.sock
+    excluded_images:
+      - "otel/opentelemetry-collector"
+    collection_interval: 30s
+    timeout: 10s
+    api_version: "1.25"
+    metrics:
+      container.uptime:
+        enabled: true
+      container.restarts:
+        enabled: true
+      container.network.io.usage.rx_errors:
+        enabled: true
+      container.network.io.usage.tx_errors:
+        enabled: true
+      container.network.io.usage.rx_packets:
+        enabled: true
+      container.network.io.usage.tx_packets:
+        enabled: true
+processors:
+  resourcedetection:
+    detectors: [env, system]
+    system:
+      hostname_sources: [os]
+  resource/env:
+    attributes:
+    - key: deployment.environment
+      value: staging
+      action: upsert
+  batch:
+    send_batch_size: 1000
+    timeout: 10s
+  resourcedetection/env:
+    detectors: [env]
+    timeout: 2s
+    override: false
+  resourcedetection/system:
+    detectors: ["system"]
+    system:
+      hostname_sources: ["dns", "os"]
+  resourcedetection/docker:
+    detectors: [env, docker]
+    timeout: 2s
+    override: false
+exporters:
+  otlp:
+    endpoint: 178.156.204.176:4317 
+    tls:
+      insecure: true
+  debug:
+    verbosity: normal
+
+service:
+  pipelines:
+    metrics/hostmetrics:
+      receivers: [hostmetrics]
+      processors: [resourcedetection, resource/env]
+      exporters: [otlp]
+    metrics:
+      receivers: [otlp, docker_stats]
+      processors: [resourcedetection/docker, batch]
+      exporters: [otlp]

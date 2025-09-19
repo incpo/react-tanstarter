@@ -1,0 +1,45 @@
+services:
+  app:
+    build:
+      context: ../../
+      dockerfile: docker/tanstack/Dockerfile
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          'bun -e ''fetch("http://localhost:3000").then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))''',
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+    env_file:
+      - ../../.env
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    networks:
+      - overgpt-network
+    labels:
+      - "traefik.enable=true"
+      # Main router for www.overgpt.com
+      - "traefik.http.routers.frontend.rule=Host(`www.overgpt.com`)"
+      - "traefik.http.routers.frontend.entrypoints=websecure"
+      - "traefik.http.routers.frontend.tls=true"
+      - "traefik.http.routers.frontend.tls.certresolver=letsencrypt"
+      - "traefik.http.services.frontend.loadbalancer.server.port=3000"
+      # Redirect router for non-www to www
+      - "traefik.http.routers.frontend-redirect.rule=Host(`overgpt.com`)"
+      - "traefik.http.routers.frontend-redirect.entrypoints=websecure"
+      - "traefik.http.routers.frontend-redirect.tls=true"
+      - "traefik.http.routers.frontend-redirect.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.frontend-redirect.middlewares=redirect-to-www"
+      # Middleware for redirect
+      - "traefik.http.middlewares.redirect-to-www.redirectregex.regex=^https://overgpt.com/(.*)"
+      - "traefik.http.middlewares.redirect-to-www.redirectregex.replacement=https://www.overgpt.com/$${1}"
+      - "traefik.http.middlewares.redirect-to-www.redirectregex.permanent=true"
+
+networks:
+  overgpt-network:
+    external: true

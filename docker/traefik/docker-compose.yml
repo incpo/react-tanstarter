@@ -1,0 +1,53 @@
+version: "3.8"
+
+services:
+  traefik:
+    image: traefik:v3
+    container_name: overgpt-traefik
+    command:
+      - --log.level=DEBUG
+      # Enable Docker provider
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --providers.docker.network=overgpt-network
+      # Set up LetsEncrypt certificate resolver
+      - --certificatesresolvers.letsencrypt.acme.dnschallenge=true
+      - --certificatesresolvers.letsencrypt.acme.dnschallenge.provider=cloudflare
+      - --certificatesResolvers.letsencrypt.acme.dnschallenge.resolvers=1.1.1.1:53,1.0.0.1:53
+      - --certificatesResolvers.letsencrypt.acme.dnschallenge.delayBeforeCheck=20
+      - --certificatesresolvers.letsencrypt.acme.email=admin@overgpt.com
+      - --certificatesresolvers.letsencrypt.acme.storage=/etc/traefik/data/letsencrypt/acme.json
+      # staging environment of LE, remove for real certs
+      # - --certificatesresolvers.letsencrypt.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
+      # Set up an insecure listener that redirects all traffic to TLS
+      - --entrypoints.web.address=:80
+      - --entrypoints.web.http.redirections.entrypoint.to=websecure
+      - --entrypoints.web.http.redirections.entrypoint.scheme=https
+      - --entryPoints.websecure.address=:443
+      # Set up the TLS configuration for our https listener
+      - --entrypoints.websecure.http.tls=true
+      - --entrypoints.websecure.http.tls.certResolver=letsencrypt
+      - --entrypoints.websecure.http.tls.domains[0].main=overgpt.com
+      - --entrypoints.websecure.http.tls.domains[0].sans=*.overgpt.com
+      # Enable API for debugging
+      - --api.dashboard=true
+      - --api.insecure=true
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - overgpt-edge-proxy-cert:/etc/traefik/data/letsencrypt
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - "CLOUDFLARE_DNS_API_TOKEN=Nq4cavIIV1c5PhDUJ59SFkKPHMG7Xj6CNIKHA1XS"
+    restart: unless-stopped
+    networks:
+      - overgpt-network
+
+networks:
+  overgpt-network:
+    external: true
+
+volumes:
+  overgpt-edge-proxy-cert:

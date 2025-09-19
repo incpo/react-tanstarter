@@ -1,0 +1,17 @@
+version: "2"
+services:
+  # Collector
+  otel-collector:
+    image: signoz/signoz-otel-collector:latest
+    restart: always
+    network_mode: host
+    command: ["--config=/etc/otel-collector-config.yaml"]
+    volumes:
+      - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
+      - /var/run/docker.sock:/var/run/docker.sock
+    user: "0:0"
+    environment:
+        - SIGNOZ_ENDPOINT=${SIGNOZ_ENDPOINT}
+
+
+
