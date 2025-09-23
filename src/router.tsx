@@ -6,7 +6,7 @@ import { DefaultCatchBoundary } from "~/components/default-catch-boundary";
 import { DefaultNotFound } from "~/components/default-not-found";
 import { routeTree } from "./routeTree.gen";
 
-export function createRouter() {
+export function getRouter() {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
