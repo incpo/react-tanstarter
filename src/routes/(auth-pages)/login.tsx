@@ -99,7 +99,8 @@ function LoginForm() {
             <SignInSocialButton
               provider="github"
               callbackURL={redirectUrl}
-              disabled={isPending}
+              // disabled={isPending}
+              disabled={true}
               icon={
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                   <path
@@ -112,8 +113,7 @@ function LoginForm() {
             <SignInSocialButton
               provider="google"
               callbackURL={redirectUrl}
-              // disabled={isPending}
-              disabled={true} // TODO disabled just for the preview deployment at https://tanstarter.nize.ph
+              disabled={isPending}
               icon={
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                   <path

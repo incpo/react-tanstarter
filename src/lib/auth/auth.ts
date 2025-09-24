@@ -26,7 +26,6 @@ const getAuthConfig = createServerOnlyFn(() =>
         maxAge: 5 * 60, // 5 minutes
       },
     },
-
     // https://www.better-auth.com/docs/concepts/oauth
     socialProviders: {
       google: {
@@ -34,7 +33,6 @@ const getAuthConfig = createServerOnlyFn(() =>
         clientSecret: env.GOOGLE_CLIENT_SECRET!,
       },
     },
-
     // https://www.better-auth.com/docs/authentication/email-password
     emailAndPassword: {
       enabled: true,

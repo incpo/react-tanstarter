@@ -89,6 +89,10 @@ export interface FileRoutesByFullPath {
   "/dashboard": typeof authenticatedDashboardRouteRouteWithChildren;
   "/login": typeof authPagesLoginRoute;
   "/signup": typeof authPagesSignupRoute;
+  "/privacy-policy": typeof policyPrivacyPolicyRoute;
+  "/refund-policy": typeof policyRefundPolicyRoute;
+  "/terms-and-conditions": typeof policyTermsAndConditionsRoute;
+  "/tos": typeof policyTosRoute;
   "/api/auth/$": typeof ApiAuthSplatRoute;
   "/dashboard/": typeof authenticatedDashboardIndexRoute;
 }
@@ -96,6 +100,10 @@ export interface FileRoutesByTo {
   "/": typeof authenticatedRouteRouteWithChildren;
   "/login": typeof authPagesLoginRoute;
   "/signup": typeof authPagesSignupRoute;
+  "/privacy-policy": typeof policyPrivacyPolicyRoute;
+  "/refund-policy": typeof policyRefundPolicyRoute;
+  "/terms-and-conditions": typeof policyTermsAndConditionsRoute;
+  "/tos": typeof policyTosRoute;
   "/api/auth/$": typeof ApiAuthSplatRoute;
   "/dashboard": typeof authenticatedDashboardIndexRoute;
 }
@@ -107,6 +115,10 @@ export interface FileRoutesById {
   "/(authenticated)/dashboard": typeof authenticatedDashboardRouteRouteWithChildren;
   "/(auth-pages)/login": typeof authPagesLoginRoute;
   "/(auth-pages)/signup": typeof authPagesSignupRoute;
+  "/(policy)/privacy-policy": typeof policyPrivacyPolicyRoute;
+  "/(policy)/refund-policy": typeof policyRefundPolicyRoute;
+  "/(policy)/terms-and-conditions": typeof policyTermsAndConditionsRoute;
+  "/(policy)/tos": typeof policyTosRoute;
   "/api/auth/$": typeof ApiAuthSplatRoute;
   "/(authenticated)/dashboard/": typeof authenticatedDashboardIndexRoute;
 }
@@ -117,10 +129,23 @@ export interface FileRouteTypes {
     | "/dashboard"
     | "/login"
     | "/signup"
+    | "/privacy-policy"
+    | "/refund-policy"
+    | "/terms-and-conditions"
+    | "/tos"
     | "/api/auth/$"
     | "/dashboard/";
   fileRoutesByTo: FileRoutesByTo;
-  to: "/" | "/login" | "/signup" | "/api/auth/$" | "/dashboard";
+  to:
+    | "/"
+    | "/login"
+    | "/signup"
+    | "/privacy-policy"
+    | "/refund-policy"
+    | "/terms-and-conditions"
+    | "/tos"
+    | "/api/auth/$"
+    | "/dashboard";
   id:
     | "__root__"
     | "/"
@@ -129,6 +154,10 @@ export interface FileRouteTypes {
     | "/(authenticated)/dashboard"
     | "/(auth-pages)/login"
     | "/(auth-pages)/signup"
+    | "/(policy)/privacy-policy"
+    | "/(policy)/refund-policy"
+    | "/(policy)/terms-and-conditions"
+    | "/(policy)/tos"
     | "/api/auth/$"
     | "/(authenticated)/dashboard/";
   fileRoutesById: FileRoutesById;
@@ -137,6 +166,10 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute;
   authPagesRouteRoute: typeof authPagesRouteRouteWithChildren;
   authenticatedRouteRoute: typeof authenticatedRouteRouteWithChildren;
+  policyPrivacyPolicyRoute: typeof policyPrivacyPolicyRoute;
+  policyRefundPolicyRoute: typeof policyRefundPolicyRoute;
+  policyTermsAndConditionsRoute: typeof policyTermsAndConditionsRoute;
+  policyTosRoute: typeof policyTosRoute;
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute;
 }
 
@@ -273,6 +306,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   authPagesRouteRoute: authPagesRouteRouteWithChildren,
   authenticatedRouteRoute: authenticatedRouteRouteWithChildren,
+  policyPrivacyPolicyRoute: policyPrivacyPolicyRoute,
+  policyRefundPolicyRoute: policyRefundPolicyRoute,
+  policyTermsAndConditionsRoute: policyTermsAndConditionsRoute,
+  policyTosRoute: policyTosRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 };
 export const routeTree = rootRouteImport
