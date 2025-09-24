@@ -8,8 +8,6 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { createServerRootRoute } from "@tanstack/react-start/server";
-
 import { Route as rootRouteImport } from "./routes/__root";
 import { Route as authenticatedRouteRouteImport } from "./routes/(authenticated)/route";
 import { Route as authPagesRouteRouteImport } from "./routes/(auth-pages)/route";
@@ -22,9 +20,7 @@ import { Route as authPagesSignupRouteImport } from "./routes/(auth-pages)/signu
 import { Route as authPagesLoginRouteImport } from "./routes/(auth-pages)/login";
 import { Route as authenticatedDashboardRouteRouteImport } from "./routes/(authenticated)/dashboard/route";
 import { Route as authenticatedDashboardIndexRouteImport } from "./routes/(authenticated)/dashboard/index";
-import { ServerRoute as ApiAuthSplatServerRouteImport } from "./routes/api/auth/$";
-
-const rootServerRouteImport = createServerRootRoute();
+import { Route as ApiAuthSplatRouteImport } from "./routes/api/auth/$";
 
 const authenticatedRouteRoute = authenticatedRouteRouteImport.update({
   id: "/(authenticated)",
@@ -82,10 +78,10 @@ const authenticatedDashboardIndexRoute =
     path: "/",
     getParentRoute: () => authenticatedDashboardRouteRoute,
   } as any);
-const ApiAuthSplatServerRoute = ApiAuthSplatServerRouteImport.update({
+const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: "/api/auth/$",
   path: "/api/auth/$",
-  getParentRoute: () => rootServerRouteImport,
+  getParentRoute: () => rootRouteImport,
 } as any);
 
 export interface FileRoutesByFullPath {
@@ -93,20 +89,14 @@ export interface FileRoutesByFullPath {
   "/dashboard": typeof authenticatedDashboardRouteRouteWithChildren;
   "/login": typeof authPagesLoginRoute;
   "/signup": typeof authPagesSignupRoute;
-  "/privacy-policy": typeof policyPrivacyPolicyRoute;
-  "/refund-policy": typeof policyRefundPolicyRoute;
-  "/terms-and-conditions": typeof policyTermsAndConditionsRoute;
-  "/tos": typeof policyTosRoute;
+  "/api/auth/$": typeof ApiAuthSplatRoute;
   "/dashboard/": typeof authenticatedDashboardIndexRoute;
 }
 export interface FileRoutesByTo {
   "/": typeof authenticatedRouteRouteWithChildren;
   "/login": typeof authPagesLoginRoute;
   "/signup": typeof authPagesSignupRoute;
-  "/privacy-policy": typeof policyPrivacyPolicyRoute;
-  "/refund-policy": typeof policyRefundPolicyRoute;
-  "/terms-and-conditions": typeof policyTermsAndConditionsRoute;
-  "/tos": typeof policyTosRoute;
+  "/api/auth/$": typeof ApiAuthSplatRoute;
   "/dashboard": typeof authenticatedDashboardIndexRoute;
 }
 export interface FileRoutesById {
@@ -117,10 +107,7 @@ export interface FileRoutesById {
   "/(authenticated)/dashboard": typeof authenticatedDashboardRouteRouteWithChildren;
   "/(auth-pages)/login": typeof authPagesLoginRoute;
   "/(auth-pages)/signup": typeof authPagesSignupRoute;
-  "/(policy)/privacy-policy": typeof policyPrivacyPolicyRoute;
-  "/(policy)/refund-policy": typeof policyRefundPolicyRoute;
-  "/(policy)/terms-and-conditions": typeof policyTermsAndConditionsRoute;
-  "/(policy)/tos": typeof policyTosRoute;
+  "/api/auth/$": typeof ApiAuthSplatRoute;
   "/(authenticated)/dashboard/": typeof authenticatedDashboardIndexRoute;
 }
 export interface FileRouteTypes {
@@ -130,21 +117,10 @@ export interface FileRouteTypes {
     | "/dashboard"
     | "/login"
     | "/signup"
-    | "/privacy-policy"
-    | "/refund-policy"
-    | "/terms-and-conditions"
-    | "/tos"
+    | "/api/auth/$"
     | "/dashboard/";
   fileRoutesByTo: FileRoutesByTo;
-  to:
-    | "/"
-    | "/login"
-    | "/signup"
-    | "/privacy-policy"
-    | "/refund-policy"
-    | "/terms-and-conditions"
-    | "/tos"
-    | "/dashboard";
+  to: "/" | "/login" | "/signup" | "/api/auth/$" | "/dashboard";
   id:
     | "__root__"
     | "/"
@@ -153,10 +129,7 @@ export interface FileRouteTypes {
     | "/(authenticated)/dashboard"
     | "/(auth-pages)/login"
     | "/(auth-pages)/signup"
-    | "/(policy)/privacy-policy"
-    | "/(policy)/refund-policy"
-    | "/(policy)/terms-and-conditions"
-    | "/(policy)/tos"
+    | "/api/auth/$"
     | "/(authenticated)/dashboard/";
   fileRoutesById: FileRoutesById;
 }
@@ -164,31 +137,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute;
   authPagesRouteRoute: typeof authPagesRouteRouteWithChildren;
   authenticatedRouteRoute: typeof authenticatedRouteRouteWithChildren;
-  policyPrivacyPolicyRoute: typeof policyPrivacyPolicyRoute;
-  policyRefundPolicyRoute: typeof policyRefundPolicyRoute;
-  policyTermsAndConditionsRoute: typeof policyTermsAndConditionsRoute;
-  policyTosRoute: typeof policyTosRoute;
-}
-export interface FileServerRoutesByFullPath {
-  "/api/auth/$": typeof ApiAuthSplatServerRoute;
-}
-export interface FileServerRoutesByTo {
-  "/api/auth/$": typeof ApiAuthSplatServerRoute;
-}
-export interface FileServerRoutesById {
-  __root__: typeof rootServerRouteImport;
-  "/api/auth/$": typeof ApiAuthSplatServerRoute;
-}
-export interface FileServerRouteTypes {
-  fileServerRoutesByFullPath: FileServerRoutesByFullPath;
-  fullPaths: "/api/auth/$";
-  fileServerRoutesByTo: FileServerRoutesByTo;
-  to: "/api/auth/$";
-  id: "__root__" | "/api/auth/$";
-  fileServerRoutesById: FileServerRoutesById;
-}
-export interface RootServerRouteChildren {
-  ApiAuthSplatServerRoute: typeof ApiAuthSplatServerRoute;
+  ApiAuthSplatRoute: typeof ApiAuthSplatRoute;
 }
 
 declare module "@tanstack/react-router" {
@@ -270,16 +219,12 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof authenticatedDashboardIndexRouteImport;
       parentRoute: typeof authenticatedDashboardRouteRoute;
     };
-  }
-}
-declare module "@tanstack/react-start/server" {
-  interface ServerFileRoutesByPath {
     "/api/auth/$": {
       id: "/api/auth/$";
       path: "/api/auth/$";
       fullPath: "/api/auth/$";
-      preLoaderRoute: typeof ApiAuthSplatServerRouteImport;
-      parentRoute: typeof rootServerRouteImport;
+      preLoaderRoute: typeof ApiAuthSplatRouteImport;
+      parentRoute: typeof rootRouteImport;
     };
   }
 }
@@ -328,17 +273,16 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   authPagesRouteRoute: authPagesRouteRouteWithChildren,
   authenticatedRouteRoute: authenticatedRouteRouteWithChildren,
-  policyPrivacyPolicyRoute: policyPrivacyPolicyRoute,
-  policyRefundPolicyRoute: policyRefundPolicyRoute,
-  policyTermsAndConditionsRoute: policyTermsAndConditionsRoute,
-  policyTosRoute: policyTosRoute,
+  ApiAuthSplatRoute: ApiAuthSplatRoute,
 };
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>();
-const rootServerRouteChildren: RootServerRouteChildren = {
-  ApiAuthSplatServerRoute: ApiAuthSplatServerRoute,
-};
-export const serverRouteTree = rootServerRouteImport
-  ._addFileChildren(rootServerRouteChildren)
-  ._addFileTypes<FileServerRouteTypes>();
+
+import type { getRouter } from "./router.tsx";
+import type { createStart } from "@tanstack/react-start";
+declare module "@tanstack/react-start" {
+  interface Register {
+    router: Awaited<ReturnType<typeof getRouter>>;
+  }
+}
