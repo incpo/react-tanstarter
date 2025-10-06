@@ -8,31 +8,19 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-<<<<<<< HEAD
-import { Route as rootRouteImport } from "./routes/__root";
-import { Route as authenticatedRouteRouteImport } from "./routes/(authenticated)/route";
-import { Route as authPagesRouteRouteImport } from "./routes/(auth-pages)/route";
-import { Route as IndexRouteImport } from "./routes/index";
-import { Route as policyTosRouteImport } from "./routes/(policy)/tos";
-import { Route as policyTermsAndConditionsRouteImport } from "./routes/(policy)/terms-and-conditions";
-import { Route as policyRefundPolicyRouteImport } from "./routes/(policy)/refund-policy";
-import { Route as policyPrivacyPolicyRouteImport } from "./routes/(policy)/privacy-policy";
-import { Route as authPagesSignupRouteImport } from "./routes/(auth-pages)/signup";
-import { Route as authPagesLoginRouteImport } from "./routes/(auth-pages)/login";
-import { Route as authenticatedDashboardRouteRouteImport } from "./routes/(authenticated)/dashboard/route";
-import { Route as authenticatedDashboardIndexRouteImport } from "./routes/(authenticated)/dashboard/index";
-import { Route as ApiAuthSplatRouteImport } from "./routes/api/auth/$";
-=======
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as authenticatedRouteRouteImport } from './routes/(authenticated)/route'
 import { Route as authPagesRouteRouteImport } from './routes/(auth-pages)/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as policyTosRouteImport } from './routes/(policy)/tos'
+import { Route as policyTermsAndConditionsRouteImport } from './routes/(policy)/terms-and-conditions'
+import { Route as policyRefundPolicyRouteImport } from './routes/(policy)/refund-policy'
+import { Route as policyPrivacyPolicyRouteImport } from './routes/(policy)/privacy-policy'
 import { Route as authPagesSignupRouteImport } from './routes/(auth-pages)/signup'
 import { Route as authPagesLoginRouteImport } from './routes/(auth-pages)/login'
 import { Route as authenticatedDashboardRouteRouteImport } from './routes/(authenticated)/dashboard/route'
 import { Route as authenticatedDashboardIndexRouteImport } from './routes/(authenticated)/dashboard/index'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
->>>>>>> main
 
 const authenticatedRouteRoute = authenticatedRouteRouteImport.update({
   id: '/(authenticated)',
@@ -46,32 +34,28 @@ const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
-<<<<<<< HEAD
-} as any);
+} as any)
 const policyTosRoute = policyTosRouteImport.update({
-  id: "/(policy)/tos",
-  path: "/tos",
+  id: '/(policy)/tos',
+  path: '/tos',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const policyTermsAndConditionsRoute =
   policyTermsAndConditionsRouteImport.update({
-    id: "/(policy)/terms-and-conditions",
-    path: "/terms-and-conditions",
+    id: '/(policy)/terms-and-conditions',
+    path: '/terms-and-conditions',
     getParentRoute: () => rootRouteImport,
-  } as any);
+  } as any)
 const policyRefundPolicyRoute = policyRefundPolicyRouteImport.update({
-  id: "/(policy)/refund-policy",
-  path: "/refund-policy",
+  id: '/(policy)/refund-policy',
+  path: '/refund-policy',
   getParentRoute: () => rootRouteImport,
-} as any);
-const policyPrivacyPolicyRoute = policyPrivacyPolicyRouteImport.update({
-  id: "/(policy)/privacy-policy",
-  path: "/privacy-policy",
-  getParentRoute: () => rootRouteImport,
-} as any);
-=======
 } as any)
->>>>>>> main
+const policyPrivacyPolicyRoute = policyPrivacyPolicyRouteImport.update({
+  id: '/(policy)/privacy-policy',
+  path: '/privacy-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const authPagesSignupRoute = authPagesSignupRouteImport.update({
   id: '/signup',
   path: '/signup',
@@ -101,48 +85,14 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
-<<<<<<< HEAD
-  "/": typeof authenticatedRouteRouteWithChildren;
-  "/dashboard": typeof authenticatedDashboardRouteRouteWithChildren;
-  "/login": typeof authPagesLoginRoute;
-  "/signup": typeof authPagesSignupRoute;
-  "/privacy-policy": typeof policyPrivacyPolicyRoute;
-  "/refund-policy": typeof policyRefundPolicyRoute;
-  "/terms-and-conditions": typeof policyTermsAndConditionsRoute;
-  "/tos": typeof policyTosRoute;
-  "/api/auth/$": typeof ApiAuthSplatRoute;
-  "/dashboard/": typeof authenticatedDashboardIndexRoute;
-}
-export interface FileRoutesByTo {
-  "/": typeof authenticatedRouteRouteWithChildren;
-  "/login": typeof authPagesLoginRoute;
-  "/signup": typeof authPagesSignupRoute;
-  "/privacy-policy": typeof policyPrivacyPolicyRoute;
-  "/refund-policy": typeof policyRefundPolicyRoute;
-  "/terms-and-conditions": typeof policyTermsAndConditionsRoute;
-  "/tos": typeof policyTosRoute;
-  "/api/auth/$": typeof ApiAuthSplatRoute;
-  "/dashboard": typeof authenticatedDashboardIndexRoute;
-}
-export interface FileRoutesById {
-  __root__: typeof rootRouteImport;
-  "/": typeof IndexRoute;
-  "/(auth-pages)": typeof authPagesRouteRouteWithChildren;
-  "/(authenticated)": typeof authenticatedRouteRouteWithChildren;
-  "/(authenticated)/dashboard": typeof authenticatedDashboardRouteRouteWithChildren;
-  "/(auth-pages)/login": typeof authPagesLoginRoute;
-  "/(auth-pages)/signup": typeof authPagesSignupRoute;
-  "/(policy)/privacy-policy": typeof policyPrivacyPolicyRoute;
-  "/(policy)/refund-policy": typeof policyRefundPolicyRoute;
-  "/(policy)/terms-and-conditions": typeof policyTermsAndConditionsRoute;
-  "/(policy)/tos": typeof policyTosRoute;
-  "/api/auth/$": typeof ApiAuthSplatRoute;
-  "/(authenticated)/dashboard/": typeof authenticatedDashboardIndexRoute;
-=======
   '/': typeof authenticatedRouteRouteWithChildren
   '/dashboard': typeof authenticatedDashboardRouteRouteWithChildren
   '/login': typeof authPagesLoginRoute
   '/signup': typeof authPagesSignupRoute
+  '/privacy-policy': typeof policyPrivacyPolicyRoute
+  '/refund-policy': typeof policyRefundPolicyRoute
+  '/terms-and-conditions': typeof policyTermsAndConditionsRoute
+  '/tos': typeof policyTosRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/dashboard/': typeof authenticatedDashboardIndexRoute
 }
@@ -150,6 +100,10 @@ export interface FileRoutesByTo {
   '/': typeof authenticatedRouteRouteWithChildren
   '/login': typeof authPagesLoginRoute
   '/signup': typeof authPagesSignupRoute
+  '/privacy-policy': typeof policyPrivacyPolicyRoute
+  '/refund-policy': typeof policyRefundPolicyRoute
+  '/terms-and-conditions': typeof policyTermsAndConditionsRoute
+  '/tos': typeof policyTosRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/dashboard': typeof authenticatedDashboardIndexRoute
 }
@@ -161,69 +115,37 @@ export interface FileRoutesById {
   '/(authenticated)/dashboard': typeof authenticatedDashboardRouteRouteWithChildren
   '/(auth-pages)/login': typeof authPagesLoginRoute
   '/(auth-pages)/signup': typeof authPagesSignupRoute
+  '/(policy)/privacy-policy': typeof policyPrivacyPolicyRoute
+  '/(policy)/refund-policy': typeof policyRefundPolicyRoute
+  '/(policy)/terms-and-conditions': typeof policyTermsAndConditionsRoute
+  '/(policy)/tos': typeof policyTosRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/(authenticated)/dashboard/': typeof authenticatedDashboardIndexRoute
->>>>>>> main
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-<<<<<<< HEAD
-    | "/"
-    | "/dashboard"
-    | "/login"
-    | "/signup"
-    | "/privacy-policy"
-    | "/refund-policy"
-    | "/terms-and-conditions"
-    | "/tos"
-    | "/api/auth/$"
-    | "/dashboard/";
-  fileRoutesByTo: FileRoutesByTo;
-  to:
-    | "/"
-    | "/login"
-    | "/signup"
-    | "/privacy-policy"
-    | "/refund-policy"
-    | "/terms-and-conditions"
-    | "/tos"
-    | "/api/auth/$"
-    | "/dashboard";
-  id:
-    | "__root__"
-    | "/"
-    | "/(auth-pages)"
-    | "/(authenticated)"
-    | "/(authenticated)/dashboard"
-    | "/(auth-pages)/login"
-    | "/(auth-pages)/signup"
-    | "/(policy)/privacy-policy"
-    | "/(policy)/refund-policy"
-    | "/(policy)/terms-and-conditions"
-    | "/(policy)/tos"
-    | "/api/auth/$"
-    | "/(authenticated)/dashboard/";
-  fileRoutesById: FileRoutesById;
-}
-export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute;
-  authPagesRouteRoute: typeof authPagesRouteRouteWithChildren;
-  authenticatedRouteRoute: typeof authenticatedRouteRouteWithChildren;
-  policyPrivacyPolicyRoute: typeof policyPrivacyPolicyRoute;
-  policyRefundPolicyRoute: typeof policyRefundPolicyRoute;
-  policyTermsAndConditionsRoute: typeof policyTermsAndConditionsRoute;
-  policyTosRoute: typeof policyTosRoute;
-  ApiAuthSplatRoute: typeof ApiAuthSplatRoute;
-=======
     | '/'
     | '/dashboard'
     | '/login'
     | '/signup'
+    | '/privacy-policy'
+    | '/refund-policy'
+    | '/terms-and-conditions'
+    | '/tos'
     | '/api/auth/$'
     | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/signup' | '/api/auth/$' | '/dashboard'
+  to:
+    | '/'
+    | '/login'
+    | '/signup'
+    | '/privacy-policy'
+    | '/refund-policy'
+    | '/terms-and-conditions'
+    | '/tos'
+    | '/api/auth/$'
+    | '/dashboard'
   id:
     | '__root__'
     | '/'
@@ -232,6 +154,10 @@ export interface RootRouteChildren {
     | '/(authenticated)/dashboard'
     | '/(auth-pages)/login'
     | '/(auth-pages)/signup'
+    | '/(policy)/privacy-policy'
+    | '/(policy)/refund-policy'
+    | '/(policy)/terms-and-conditions'
+    | '/(policy)/tos'
     | '/api/auth/$'
     | '/(authenticated)/dashboard/'
   fileRoutesById: FileRoutesById
@@ -240,98 +166,15 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   authPagesRouteRoute: typeof authPagesRouteRouteWithChildren
   authenticatedRouteRoute: typeof authenticatedRouteRouteWithChildren
+  policyPrivacyPolicyRoute: typeof policyPrivacyPolicyRoute
+  policyRefundPolicyRoute: typeof policyRefundPolicyRoute
+  policyTermsAndConditionsRoute: typeof policyTermsAndConditionsRoute
+  policyTosRoute: typeof policyTosRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
->>>>>>> main
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-<<<<<<< HEAD
-    "/(authenticated)": {
-      id: "/(authenticated)";
-      path: "/";
-      fullPath: "/";
-      preLoaderRoute: typeof authenticatedRouteRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/(auth-pages)": {
-      id: "/(auth-pages)";
-      path: "/";
-      fullPath: "/";
-      preLoaderRoute: typeof authPagesRouteRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/": {
-      id: "/";
-      path: "/";
-      fullPath: "/";
-      preLoaderRoute: typeof IndexRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/(policy)/tos": {
-      id: "/(policy)/tos";
-      path: "/tos";
-      fullPath: "/tos";
-      preLoaderRoute: typeof policyTosRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/(policy)/terms-and-conditions": {
-      id: "/(policy)/terms-and-conditions";
-      path: "/terms-and-conditions";
-      fullPath: "/terms-and-conditions";
-      preLoaderRoute: typeof policyTermsAndConditionsRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/(policy)/refund-policy": {
-      id: "/(policy)/refund-policy";
-      path: "/refund-policy";
-      fullPath: "/refund-policy";
-      preLoaderRoute: typeof policyRefundPolicyRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/(policy)/privacy-policy": {
-      id: "/(policy)/privacy-policy";
-      path: "/privacy-policy";
-      fullPath: "/privacy-policy";
-      preLoaderRoute: typeof policyPrivacyPolicyRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/(auth-pages)/signup": {
-      id: "/(auth-pages)/signup";
-      path: "/signup";
-      fullPath: "/signup";
-      preLoaderRoute: typeof authPagesSignupRouteImport;
-      parentRoute: typeof authPagesRouteRoute;
-    };
-    "/(auth-pages)/login": {
-      id: "/(auth-pages)/login";
-      path: "/login";
-      fullPath: "/login";
-      preLoaderRoute: typeof authPagesLoginRouteImport;
-      parentRoute: typeof authPagesRouteRoute;
-    };
-    "/(authenticated)/dashboard": {
-      id: "/(authenticated)/dashboard";
-      path: "/dashboard";
-      fullPath: "/dashboard";
-      preLoaderRoute: typeof authenticatedDashboardRouteRouteImport;
-      parentRoute: typeof authenticatedRouteRoute;
-    };
-    "/(authenticated)/dashboard/": {
-      id: "/(authenticated)/dashboard/";
-      path: "/";
-      fullPath: "/dashboard/";
-      preLoaderRoute: typeof authenticatedDashboardIndexRouteImport;
-      parentRoute: typeof authenticatedDashboardRouteRoute;
-    };
-    "/api/auth/$": {
-      id: "/api/auth/$";
-      path: "/api/auth/$";
-      fullPath: "/api/auth/$";
-      preLoaderRoute: typeof ApiAuthSplatRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-=======
     '/(authenticated)': {
       id: '/(authenticated)'
       path: '/'
@@ -351,6 +194,34 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(policy)/tos': {
+      id: '/(policy)/tos'
+      path: '/tos'
+      fullPath: '/tos'
+      preLoaderRoute: typeof policyTosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(policy)/terms-and-conditions': {
+      id: '/(policy)/terms-and-conditions'
+      path: '/terms-and-conditions'
+      fullPath: '/terms-and-conditions'
+      preLoaderRoute: typeof policyTermsAndConditionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(policy)/refund-policy': {
+      id: '/(policy)/refund-policy'
+      path: '/refund-policy'
+      fullPath: '/refund-policy'
+      preLoaderRoute: typeof policyRefundPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(policy)/privacy-policy': {
+      id: '/(policy)/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof policyPrivacyPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/(auth-pages)/signup': {
@@ -388,7 +259,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
->>>>>>> main
   }
 }
 
